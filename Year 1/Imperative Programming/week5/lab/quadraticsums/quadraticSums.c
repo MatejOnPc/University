@@ -3,7 +3,7 @@
 /* date    : SUN Oct 11 2020 */
 /* version : 1.0 */
 
-/* Description:  */
+/* Description:  This programm receives input n and outputs in how many different ways n can be expressed as a sum of squares */
 
 #include <stdio.h>
 #include <stdlib.h>
