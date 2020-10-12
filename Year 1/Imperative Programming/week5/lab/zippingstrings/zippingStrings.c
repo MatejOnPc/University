@@ -11,13 +11,13 @@
 
 
 /* recursive function */
-int merge(int i, int n, char *aM, char *aG, char *a1, char *a2, int lenght1, int lenght2) {
+void merge(int i, int n, char *aM, char *aG, char *a1, char *a2, int lenght1, int lenght2) {
     /* char newString[33]; */
     printf("aM = %s\n", aM);
     printf("aG = %s\n", aG);
 
     if (aG == aM) {
-        return 1;
+        printf("YES\n");
     }
 
     printf("aG[i] = %c, a1[0] = %c and a2[0] = %c\n", aG[i], a1[0], a2[0]);
@@ -32,7 +32,7 @@ int merge(int i, int n, char *aM, char *aG, char *a1, char *a2, int lenght1, int
         lenght1--;
         i++;
         printf("lenght1 = %d\n", lenght1);
-        return merge(i, n, aM, aG, a1, a2, lenght1, lenght2);
+        merge(i, n, aM, aG, a1, a2, lenght1, lenght2);
     }
 
     if ((aG[i] == a2[0]) && (lenght2 >= 0)) {
@@ -46,7 +46,7 @@ int merge(int i, int n, char *aM, char *aG, char *a1, char *a2, int lenght1, int
         lenght2--;
         i++;
         printf("lenght2 = %d\n", lenght2);
-        return merge(i, n, aM, aG, a1, a2, lenght1, lenght2);
+        merge(i, n, aM, aG, a1, a2, lenght1, lenght2);
     }
 
     if ((aG[i] != a1[0]) && (aG[i] != a2[0])) {
@@ -54,12 +54,11 @@ int merge(int i, int n, char *aM, char *aG, char *a1, char *a2, int lenght1, int
             aM[i] = aG[i];
             n--;
             i++;
-            return merge(i, n, aM, aG, a1, a2, lenght1, lenght2);
+            merge(i, n, aM, aG, a1, a2, lenght1, lenght2);
         } else {
-            return 0;
+            return;
         }
     }
-    return 0;
     /*
     printf("i = %d, aM = %s, a1 = %s, n = %d\n", i, aM, a1, n); */
 }
@@ -68,7 +67,8 @@ int main(int argc, char *argv[]) {
     int n;    /* number of auxiliary letters */
     char array1[33], array2[33], arrayGoal[34];    /* arrays for strings, lenght is 33 because I need to count for '\0' */
     char arrayMerged[33];    /* for saving the merged words */
-    int output;
+    arrayMerged[0] = '\0';
+    /* int output; */
     int lenght1, lenght2;
 
     scanf("%d", &n);
@@ -81,10 +81,10 @@ int main(int argc, char *argv[]) {
     lenght1 = strlen(array1);
     lenght2 = strlen(array2);
 
-    output = merge(0, n, arrayMerged, arrayGoal, array1, array2, lenght1, lenght2);
+    merge(0, n, arrayMerged, arrayGoal, array1, array2, lenght1, lenght2);
     /* + merge(0, n, arrayMerged, arrayGoal, array2, array1, lenght2, lenght1); */   /* calling the recursive function */
 
-    printf("%d\n", output);
+    /* printf("%d\n", output); */
 
     return 0;
 }
