@@ -50,14 +50,12 @@ int main(int argc, char *argv[]) {
     scanf("%d %s %s %s", &n, array1, array2, arrayGoal);
     lenght = strlen(arrayGoal);
 
-    if (strlen(array1) + strlen(array2) + n == lenght) {
-        merge(0, 0, 0, n, arrayGoal, array1, array2, lenght);    /* calling the recursive function */
-    } else {
-        printf("NO\n");
-    }
-
-    if ((merge(0, 0, 0, n, arrayGoal, array1, array2, lenght)) || (merge(0, 0, 0, n, arrayGoal, array2, array1, lenght))) {
-        printf("YES\n");
+    if ((strlen(array1) + strlen(array2) + n >= lenght) && (strlen(array1) + strlen(array2) <= lenght)) {
+        if ((merge(0, 0, 0, n, arrayGoal, array1, array2, lenght)) || (merge(0, 0, 0, n, arrayGoal, array2, array1, lenght))) {
+            printf("YES\n");
+        } else {
+            printf("NO\n");
+        }
     } else {
         printf("NO\n");
     }
