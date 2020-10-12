@@ -1,7 +1,7 @@
 /* file    : zippingStrings.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : MON Oct 12 2020 */
-/* version : 1.0 */
+/* version : 1.1 */
 
 /* Description: This program receives 3 strings as an input and outputs whether it is
 possible to produce the third string from the first two using n auxiliary letters */
@@ -52,7 +52,11 @@ int main(int argc, char *argv[]) {
     scanf("%d %s %s %s", &n, array1, array2, arrayGoal);
     lenght = strlen(arrayGoal);
 
-    merge(0, 0, 0, n, arrayGoal, array1, array2, lenght);    /* calling the recursive function */
-
+    if (strlen(array1) + strlen(array2) + n == lenght) {
+        merge(0, 0, 0, n, arrayGoal, array1, array2, lenght);    /* calling the recursive function */
+    } else {
+        printf("NO\n");
+    }
+    
     return 0;
 }
