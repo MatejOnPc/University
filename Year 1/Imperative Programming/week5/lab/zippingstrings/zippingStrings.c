@@ -12,12 +12,11 @@ possible to produce the third string from the first two using n auxiliary letter
 
 
 /* recursive function */
-void merge(int i, int x, int y, int n, char *aG, char *a1, char *a2, int lenght) {    /* i is used as index of arrayGoal, x of array1 and y of array2 */
+int merge(int i, int x, int y, int n, char *aG, char *a1, char *a2, int lenght) {    /* i is used as index of arrayGoal, x of array1 and y of array2 */
     
     for (int j = 0; j == 0; j++) {    /* I want to break out of the loop if I found the letter in one of the strings */
         if (i == lenght-1) {
-            printf("YES\n");
-            return;
+            return 1;
         }
 
         if (aG[i] == a1[x]) {
@@ -35,8 +34,7 @@ void merge(int i, int x, int y, int n, char *aG, char *a1, char *a2, int lenght)
                 n--;
                 break;
             } else {
-                printf("NO\n");
-                return;
+                return 0;
             }
         }
     }
@@ -54,6 +52,12 @@ int main(int argc, char *argv[]) {
 
     if (strlen(array1) + strlen(array2) + n == lenght) {
         merge(0, 0, 0, n, arrayGoal, array1, array2, lenght);    /* calling the recursive function */
+    } else {
+        printf("NO\n");
+    }
+
+    if ((merge(0, 0, 0, n, arrayGoal, array1, array2, lenght)) || (merge(0, 0, 0, n, arrayGoal, array2, array1, lenght))) {
+        printf("YES\n");
     } else {
         printf("NO\n");
     }
