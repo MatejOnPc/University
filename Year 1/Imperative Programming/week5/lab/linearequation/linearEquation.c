@@ -1,6 +1,6 @@
 /* file    : linearEquation.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
-/* date    : TUE Oct 6 2020 */
+/* date    : TUE Oct 13 2020 */
 /* version : 1.2 */
 
 /* Description: This program finds number of possible solutions for a given linear equation */
@@ -55,13 +55,12 @@ int findSolutions(int y, int a[], int mul[], int max[], int lenght, int solution
         }
     }
 
-    /* to make the program more efficient, I don't go through all the possibilities, but check the condition for the multiple with the first indes */
+    /* to make the program more efficient, I don't go through all the possibilities, but check the condition for the first index of multiple */
     if ((y - sum >= 0) && ((y-sum) % a[0] == 0)) {
         solutions++;
     }
 
     mul[lenght-1]++;
-
     findSolutions(y, a, mul, max, lenght, solutions);    /* recursive call */
 }
 
