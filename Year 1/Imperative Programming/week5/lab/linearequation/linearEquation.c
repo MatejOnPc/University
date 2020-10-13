@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int fillArray(int a[], int lenght) {
+void fillArray(int a[], int lenght) {
     int x;
     for (int i = 0; i < lenght; i++) {
         scanf("%d", &x);
@@ -17,40 +17,58 @@ int fillArray(int a[], int lenght) {
     }
 }
 
-int findSolutions(int y, int *a, int *mul, int lenght, int index) {
+void fillMaxMultiples(int max[], int a[], int lenght, int y) {
+    for (int i = 0; i < lenght; i++) {
+        max[i] = y / a[i];
+    }
+}
+
+int findSolutions(int y, int a[], int mul[], int max[], int lenght, int solutions) {
     int sum = 0;
-    int steps = 0;
+    int i;
 
     for (int i = 0; i < lenght; i++) {
+        printf("%d ", mul[i]);
+    }
+    printf("\n");
+
+    if (mul[0] > max[0]) {
+        return solutions;
+    }
+
+    for (i = 0; i < lenght; i++) {
+        if (mul[i] > max[i]) {
+            mul[i-1]++;
+            mul[i] = 0;
+            return findSolutions(y, a, mul, max, lenght, solutions);
+        }
+    }
+
+
+    for (i = 0; i < lenght; i++) {
         sum += a[i] * mul[i];
     }
 
-    if (sum > y) {
-        mul[index] = 0;
-        steps--;
-        mul[index-steps]++;
-    }
-
     if (sum == y) {
-        mul[index] = 0;
-        index++;
-        findSolutions();
-        return 1;
+        solutions++;
     }
 
-    mul[index]++;
-    findSolutions();
+    mul[lenght-1]++;
 
+    findSolutions(y, a, mul, max, lenght, solutions);
 }
 
 int main(int argc, char *argv[]) {
-    int solutions = 0;
     int n;
-    int array[n];
-    int multiples[n];
     int y;
+    int solutions;
     
     scanf("%d:", &n);
+
+    int array[n];
+    int multiples[n];
+    int maxMultiples[n];
+
     fillArray(array, n);
     scanf("%d",&y);
 
@@ -58,10 +76,20 @@ int main(int argc, char *argv[]) {
         multiples[i] = 0;
     }
 
+    fillMaxMultiples(maxMultiples, array, n, y);
+/*
+    for (int i = 0; i < n; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", maxMultiples[i]);
+    }
+    printf("\n"); */
 
+    solutions = findSolutions(y, array, multiples, maxMultiples, n, 0);
 
-    solutions = findSolutions(y, 0, 0);    
-
+    printf("%d\n", solutions);
 
     return 0;
 }
