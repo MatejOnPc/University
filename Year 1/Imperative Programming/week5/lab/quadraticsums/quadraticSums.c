@@ -1,13 +1,12 @@
 /* file    : quadraticSums.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : SUN Oct 11 2020 */
-/* version : 1.0 */
+/* version : 1.1 */
 
 /* Description:  This programm receives input n and outputs in how many different ways n can be expressed as a sum of squares */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /* This function creates dynamically allocated array, with size given as a parameter */
 int *dynamicArray(int size) {

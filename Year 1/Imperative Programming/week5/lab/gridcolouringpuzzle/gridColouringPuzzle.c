@@ -1,14 +1,13 @@
 /* file    : gridColouringPuzzle.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
-/* date    : MON Oct 12 2020 */
-/* version : 1.0 */
+/* date    : TUE Oct 13 2020 */
+/* version : 1.1 */
 
 /* Description: This program receives as input 9x9 grid of charcaters representing colors and empty squares. Then finds the solution 
 according to the rules (if possible) and prints it */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /* This function prints the grid at the end */
 void printGrid(char grid[9][9], int *a) {

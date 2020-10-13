@@ -1,15 +1,13 @@
 /* file    : zippingStrings.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : MON Oct 12 2020 */
-/* version : 1.3 */
+/* version : 1.4 */
 
 /* Description: This program receives 3 strings as an input and outputs whether it is
 possible to produce the third string from the first two using n auxiliary letters */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
 
 /* recursive function */
 int merge(int i, int x, int y, int n, char *aG, char *a1, char *a2, int lenght, int lenght1, int lenght2) {    /* i is used as index of arrayGoal, x of array1 and y of array2 */
