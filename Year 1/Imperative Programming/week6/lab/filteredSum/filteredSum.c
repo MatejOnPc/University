@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     int lenght;    /* lenght of the first line */
     scanf("%d:", &lenght);
 
-    /* create an array with lenght n, fill with the numbers from first line */
+    /* create an array with scanned lenght, fill with the numbers from first line */
     int nInArray;
     int firstLine[lenght];
     for (int i = 0; i < lenght; i++) {
