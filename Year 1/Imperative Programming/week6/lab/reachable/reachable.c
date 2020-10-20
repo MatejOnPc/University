@@ -1,7 +1,7 @@
 /* file    : reachable.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
-/* date    : SUN Oct 18 2020 */
-/* version : 1.1 */
+/* date    : TUE Oct 20 2020 */
+/* version : 1.4 */
 
 /* Description: This program takes an array of numbers as an input and then prints whether there's a solution following the rules given in program description */
 
@@ -10,28 +10,26 @@
 #include <string.h>
 
 /* recursive function that tries to find the solution */
-void solution(int index, int x, int a[], int lenght, int *print) {    /* x is used in for loop so I don't repeat the same jumps */
-    /* base case, I am already out of bounds -> no solution with this particular jumps */
-    if (index >= lenght) {
+void findSolution(int a[], int index, int *print) {
+    int currentIndex = index;
+    int steps = 0;
+
+    /* base case */
+    if (index == 0) {
+        *print = 1;
         return;
     }
 
-    /* base case, I found the solution */
-    if (index == lenght-1) {
-        *print = 1;    /* used for printing YES or NO in main function */
-        return;
+    /* check whther the jump is possible, if yes -> it recurse, if not -> tries to go further until out of bounds */
+    while (currentIndex != 0) {
+        currentIndex--;
+        steps++;
+        if (a[currentIndex] >= steps) {    /* whether it's possible to jump from currentIndex to index passed in the function at the beggining */
+            findSolution(a, currentIndex, print);
+            return;
+        }
     }
-
-    int y = 0;
-    /* for each possible jump, try to find the solution */
-    for (int i = a[index]; i > x; i--) {    /* I want to first check the jumps from largest to smallest */
-        solution((index+i), 0 + y, a, lenght, print);
-        y++;
-    }
-    /* if for example a[index] was 3, I alredy tried jump 3 and it didn't work,
-    next it will try jump 2. But it won't try then jump 1, because that would be the same as jumping 3 the first time */
 }
-
 
 int main(int argc, char *argv[]) {
     int lenght;
@@ -47,7 +45,7 @@ int main(int argc, char *argv[]) {
         array[i] = nInArray;
     }
 
-    solution(0, 0, array, lenght, &print);
+    findSolution(array, lenght-1, &print);
 
     if (print == 1) {
         printf("YES\n");
