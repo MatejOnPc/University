@@ -1,7 +1,7 @@
 /* file    : numberPyramids.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : TUE Oct 20 2020 */
-/* version : 1.3 */
+/* version : 1.4 */
 
 /* Description: This programs reads an array from input and outputs whether its possible to create a pyramid based on the rules given in problem description */
 
@@ -83,5 +83,8 @@ int main(int argc, char *argv[]) {
     } else {
         printf("NO\n");
     }
+
+    free(array);    /* free dynamically allocated array */
+
     return 0;
 }
