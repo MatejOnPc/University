@@ -1,7 +1,7 @@
 /* file    : increasingSelection.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : SAT Oct 24 2020 */
-/* version : 1.0 */
+/* version : 1.1 */
 
 /* Description: This program takes an array as an input, sorts the array and then prints the length of the longest increasing sequence */
 
@@ -86,7 +86,6 @@ int findMax(int length, int *array) {
         } else {
             if (max > allTimeMax) {
                 allTimeMax = max + 1;    /* + 1 because I haven't counted the last number in the subsequence */
-                max = 0;
             }
             max = 0;
         }
