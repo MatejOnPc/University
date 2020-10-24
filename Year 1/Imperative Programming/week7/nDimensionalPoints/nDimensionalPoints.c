@@ -1,9 +1,9 @@
 /* file    : nDimensionalPoints.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : SAT Oct 24 2020 */
-/* version : 1.0 */
+/* version : 1.1 */
 
-/* Description:  */
+/* Description: This program takes a 2D array as an input, and then prints how many times point p (also given in input) is in the array */
 
 #include <stdio.h>
 #include <stdlib.h>
