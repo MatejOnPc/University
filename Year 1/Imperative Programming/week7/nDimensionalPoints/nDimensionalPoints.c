@@ -1,6 +1,6 @@
-/* file    : .c */
+/* file    : nDimensionalPoints.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
-/* date    : TUE Oct 20 2020 */
+/* date    : SAT Oct 24 2020 */
 /* version : 1.0 */
 
 /* Description:  */
@@ -33,72 +33,48 @@ int *dynamicArray(int size) {
 	return array;
 }
 
-/* recursive function, finds whether the number is in the first line */
-int recBinarySearch(int n, int k, int left, int right, int a[n][k], int number, int *index) {
-    int mid;
-
-    /* base case */
-    if (left == right - 1) {
-         /* if the number was in the first line, returns the number, else it returns 0 (because I add the return value to the sum) */
-        if (a[0][left] == number) {
-            *index = left;
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    mid = (left + right)/2;
-    
-    /* changes left or right based on the number, so it stays in halved array */
-    if (number < a[0][mid]){
-        right = mid;
-    } else {
-        left = mid;
-    }
-
-    return recBinarySearch(n, k, left, right, a, number, index);
-} 
-
 int main(int argc, char *argv[]) {
     int n, k, i;
     int **array;
     int *point;
-    int index;
-    int value;
+    int output = 0, checkPoint;    /* used for checking whether the point is in array */
 
     scanf("%d %d", &n, &k);    
     array = makeIntArray2D(n, k);
-
+    /* fill the array */
     for (i = 0; i < n; i++) {
         for (int j = 0; j < k; j++) {
             scanf("%d", &array[i][j]);
         }
     }
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < k; j++) {
-            printf("%d", array[i][j]);
-        }
-        printf("\n");
-    }
-
     point = dynamicArray(n);
-
+    /* fill the point */
     for (i = 0; i < n; i++) {
         scanf("%d", &point[i]);
     }
 
-    value = point[0];
-
-    if (recBinarySearch(n, k, 0, k, array, value, &index)) {
-        printf("index = %d\n", index);
-        while (array[0][index] == value) {
-            index--;
+    for (i = 0; i < k; i++) {
+        if (point[0] == array[0][i]) {
+            checkPoint = 1;   /* I assume that i found the point */
+            for (int j = 1; j < n; j++) {
+                if (array[j][i] != point[j]) {    /* If it doesn't equal, it's not the point I am searching for */
+                    checkPoint = 0;
+                    break;
+                }
+            }
+            output += checkPoint;
         }
-        index++;
-        printf("index = %d". index);
+        if (point[0] < array[0][i]) {    /* because first line is ordered, once the element in array becomes larger, there's no point in checking anymore */
+            break;
+        }
     }
+
+    printf("%d\n", output);
+
+    /* free all arrays */
+    destroyIntArray2D(array, n);
+    free(point);
 
     return 0;
 }
