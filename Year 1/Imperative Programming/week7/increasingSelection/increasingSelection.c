@@ -1,7 +1,7 @@
 /* file    : increasingSelection.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : SAT Oct 24 2020 */
-/* version : 1.1 */
+/* version : 1.2 */
 
 /* Description: This program takes an array as an input, sorts the array and then prints the length of the longest increasing sequence */
 
@@ -116,6 +116,8 @@ int main(int argc, char *argv[]) {
     max = findMax(length, array);
 
     printf("%d\n", max);
+
+    free(array);
 
     return 0;
 }

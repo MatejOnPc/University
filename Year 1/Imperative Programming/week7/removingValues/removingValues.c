@@ -1,7 +1,7 @@
 /* file    : removingValues.c */
 /* author  : Matej Priesol (email: m.priesol@student.rug.nl) */
 /* date    : SAT Oct 24 2020 */
-/* version : 1.0 */
+/* version : 1.1 */
 
 /* Description: This program takes an array as an input, sorts the array and then prints the length
 of the longest increasing sequence, if we can remove up to k values */
@@ -136,6 +136,8 @@ int main(int argc, char *argv[]) {
     max = findMax(length, array, k);
 
     printf("%d\n", max);
+
+    free(array);
 
     return 0;
 }
